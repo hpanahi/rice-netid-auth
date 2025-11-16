@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { getCASLoginURL } from '@/lib/cas-auth';
 
 export default function LoginContent() {
   const router = useRouter();
@@ -41,7 +40,13 @@ export default function LoginContent() {
   }, [router, searchParams]);
 
   const handleLogin = () => {
-    window.location.href = getCASLoginURL('/dashboard');
+    // Generate CAS login URL using client-side origin
+    const appUrl = window.location.origin;
+    const serviceUrl = `${appUrl}/api/auth/callback`;
+    const destination = '/dashboard';
+    const destinationParam = encodeURIComponent(destination);
+    const casLoginUrl = `https://netid.rice.edu/cas/login?service=${encodeURIComponent(serviceUrl)}?destination=${destinationParam}`;
+    window.location.href = casLoginUrl;
   };
 
   if (checking) {
