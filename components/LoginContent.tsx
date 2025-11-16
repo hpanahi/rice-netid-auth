@@ -100,6 +100,11 @@ export default function LoginContent() {
         <div className="mt-12 text-sm text-gray-500 dark:text-gray-500">
           <p>this is a test application demonstrating rice cas authentication</p>
           <p className="mt-2">you will be redirected to netid.rice.edu for authentication</p>
+          <p className="mt-4">
+            <a href="https://github.com/hpanahi/rice-netid-auth" target="_blank" rel="noopener noreferrer" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">
+              github
+            </a>
+          </p>
         </div>
       </div>
     </main>
