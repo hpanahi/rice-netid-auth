@@ -138,10 +138,10 @@ export default function AnimatedOwl() {
       </div>
       <div className="mt-8 text-center">
         <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-2">
-          Welcome, Rice Owl!
+          welcome, rice owl!
         </h1>
         <p className="text-lg text-gray-600 dark:text-gray-400">
-          You are successfully authenticated with your Rice NetID
+          you are successfully authenticated with your rice netid
         </p>
       </div>
     </div>
