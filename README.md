@@ -2,6 +2,10 @@
 
 A Next.js application demonstrating Rice University NetID authentication using CAS (Central Authentication Service) with an animated ASCII owl upon successful login.
 
+## Live Demo
+
+**[https://rice-netid-auth.vercel.app/](https://rice-netid-auth.vercel.app/)**
+
 ## Features
 
 - Rice NetID authentication via CAS protocol
