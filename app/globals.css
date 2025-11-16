@@ -25,6 +25,10 @@ body {
     )
     rgb(var(--background-start-rgb));
   min-height: 100vh;
+  text-transform: lowercase;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
 }
 
 @layer utilities {
