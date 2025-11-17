@@ -8,6 +8,7 @@ const APP_URL = process.env.APP_URL || 'http://localhost:3000';
 export interface CASValidationResponse {
   success: boolean;
   netId?: string;
+  affiliation?: string;
   error?: string;
 }
 
@@ -38,11 +39,12 @@ export async function validateCASTicket(ticket: string, serviceUrl: string): Pro
     const response = await fetch(validateUrl);
     const xmlText = await response.text();
 
-    // Parse the XML response to extract the NetID
+    // Parse the XML response to extract the NetID and affiliation
     const netId = parseXMLTag(xmlText, 'cas:user');
+    const affiliation = parseXMLTag(xmlText, 'cas:eduPersonPrimaryAffiliation');
 
     if (netId) {
-      return { success: true, netId };
+      return { success: true, netId, affiliation: affiliation || undefined };
     } else {
       return { success: false, error: 'Invalid ticket or user not found in CAS response' };
     }

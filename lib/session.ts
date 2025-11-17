@@ -9,15 +9,17 @@ const SESSION_MAX_AGE = 60 * 60 * 24 * 7; // 7 days
 
 export interface SessionData {
   netId: string;
+  affiliation?: string;
   authenticated: boolean;
 }
 
 /**
  * Create a session for an authenticated user
  */
-export async function createSession(netId: string): Promise<void> {
+export async function createSession(netId: string, affiliation?: string): Promise<void> {
   const sessionData: SessionData = {
     netId,
+    affiliation,
     authenticated: true,
   };
 

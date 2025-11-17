@@ -29,7 +29,7 @@ export async function GET(request: NextRequest) {
   }
 
   // Create a session for the authenticated user
-  await createSession(validation.netId);
+  await createSession(validation.netId, validation.affiliation);
 
   // Redirect to the destination
   return NextResponse.redirect(new URL(destination, request.url));

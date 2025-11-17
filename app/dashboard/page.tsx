@@ -15,8 +15,13 @@ export default async function DashboardPage() {
         <div className="flex justify-between items-center mb-12">
           <div>
             <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-100">
-              Logged in as: <span className="text-blue-600 dark:text-blue-400">{session.netId}</span>
+              logged in as: <span className="text-blue-600 dark:text-blue-400">{session.netId}</span>
             </h2>
+            {session.affiliation && (
+              <p className="text-lg text-gray-600 dark:text-gray-400 mt-2">
+                affiliation: <span className="text-green-600 dark:text-green-400 font-medium">{session.affiliation}</span>
+              </p>
+            )}
           </div>
           <a
             href="/api/auth/logout"
