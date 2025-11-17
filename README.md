@@ -9,6 +9,7 @@ A Next.js application demonstrating Rice University NetID authentication using C
 ## Features
 
 - Rice NetID authentication via CAS protocol
+- User affiliation extraction (faculty, student, staff)
 - Secure session management with HTTP-only cookies
 - Protected routes that require authentication
 - Animated ASCII owl (similar to ghostty.org's ghost animation)
@@ -24,8 +25,8 @@ A Next.js application demonstrating Rice University NetID authentication using C
 3. **Credentials**: User enters their Rice NetID credentials on the CAS server
 4. **Ticket Generation**: CAS generates a one-time ticket and redirects back to the app
 5. **Ticket Validation**: App validates the ticket with the CAS server
-6. **Session Creation**: Upon successful validation, a secure session is created
-7. **Owl Reveal**: User sees the animated ASCII owl on the dashboard!
+6. **Session Creation**: Upon successful validation, a secure session is created with NetID and affiliation data
+7. **Owl Reveal**: User sees the animated ASCII owl on the dashboard with their NetID and affiliation!
 
 ### File Structure
 
@@ -96,8 +97,9 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 2. Click "Login with Rice NetID"
 3. Enter your Rice NetID credentials on the CAS login page
 4. Upon successful authentication, you'll be redirected to the dashboard
-5. Enjoy the animated ASCII owl!
-6. Click "Logout" to end your session
+5. See your NetID and affiliation (faculty/student/staff) displayed
+6. Enjoy the animated ASCII owl!
+7. Click "Logout" to end your session
 
 ## CAS Protocol Details
 
@@ -107,7 +109,9 @@ This application uses **CAS 2.0 Protocol** for authentication:
 - **Validation URL**: `https://netid.rice.edu/cas/serviceValidate?ticket=[ticket]&service=[callback-url]`
 - **Logout URL**: `https://netid.rice.edu/cas/logout?service=[return-url]`
 
-The validation response is an XML document containing the authenticated user's NetID.
+The validation response is an XML document containing:
+- `cas:user` - The authenticated user's NetID
+- `cas:eduPersonPrimaryAffiliation` - User's primary affiliation (faculty, student, staff, etc.)
 
 ## Security Features
 
