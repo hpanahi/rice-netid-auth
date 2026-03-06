@@ -113,6 +113,22 @@ The validation response is an XML document containing:
 - `cas:user` - The authenticated user's NetID
 - `cas:eduPersonPrimaryAffiliation` - User's primary affiliation (faculty, student, staff, etc.)
 
+### Service URL must be clean
+
+**The `service` URL you send to CAS login must exactly match the one you use for ticket validation.** CAS compares them character-for-character. Don't append extra query parameters (like `?destination=/somewhere`) to the service URL. Even small encoding differences (`%2F` vs `/`) will cause validation to fail silently.
+
+Keep the service URL as just the callback path:
+
+```
+// Good
+service=https%3A%2F%2Fyourapp.com%2Fapi%2Fauth%2Fcallback
+
+// Bad — extra params cause encoding mismatches on validation
+service=https%3A%2F%2Fyourapp.com%2Fapi%2Fauth%2Fcallback?destination=%2Fcourse
+```
+
+If you need to pass state through the auth flow (like a return URL), store it in a cookie before redirecting to CAS.
+
 ## Security Features
 
 - HTTP-only cookies prevent XSS attacks
